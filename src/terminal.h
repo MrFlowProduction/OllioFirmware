@@ -3,6 +3,7 @@
 
 #include <Arduino.h>            // Base Arduino library
 #include <settings.h>           // Settings
+#include <diagnostic.h>
 
 void INIT_TERMINAL();
 

@@ -1,5 +1,4 @@
-#include "terminal.h"
-#include <Arduino.h> /* we need arduino functions to implement this */
+#include <terminal.h>
 
 
 
@@ -105,6 +104,10 @@ void terminal_handler() {
 
     else if (temp == "usbmode"){
       printdone();
+    }
+
+    else if (temp == "scan bus"){
+      i2c_scanner();
     }
 
     else {
