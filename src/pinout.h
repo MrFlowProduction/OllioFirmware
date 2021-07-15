@@ -15,13 +15,13 @@
 // ===============================================================================
 //      NAME                    PIN          DESCRIPTION
 // ===============================================================================
-#define BUTTON_LED              0         // Button backlight
+#define BUTTON_LED              4         // Button backlight
 #define TANK_SENSOR             0         // Tank full sensor
-#define USER_BUTTON             0         // User control button
-#define DOOR_SENSOR             0         // User control button
-#define DC_EN                   0         // Tank full sensor
-#define DC_IN1                  0         // User control button
-#define DC_IN2                  0         // User control button
+#define USER_BUTTON             1         // User control button
+#define DOOR_SENSOR             2         // User control button
+#define DC_EN                   8         // Tank full sensor
+#define DC_IN1                  10        // User control button
+#define DC_IN2                  9         // User control button
 // ===============================================================================
 
 

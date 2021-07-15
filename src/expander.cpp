@@ -64,8 +64,21 @@ void handlingExpInterrupt(){
     uint8_t pin=mcp.getLastInterruptPin();
     uint8_t val=mcp.getLastInterruptPinValue();
 
+    // Handling user button
     if (pin == USER_BUTTON){
         isButtonPressed = true;
+    }
+
+    // Handling water tank
+    if(pin == TANK_SENSOR){
+        if(val == 0) {isTankFull = true; }
+        else{ isTankFull = false; }
+    }
+
+    // Handling Door sensor
+    if(pin == DOOR_SENSOR){
+        if(val == 0) {isDoorOpened = false; }
+        else{ isTankFull = true; }
     }
 }
 
