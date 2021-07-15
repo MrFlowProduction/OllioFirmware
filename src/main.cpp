@@ -6,7 +6,7 @@
 #include <leds.h>
 #include <terminal.h>
 #include <expander.h>
-
+#include <scale.h>
 Scheduler runner; // Task Scheduler (MAIN OBJECT)
 
 // _________________________________ Tasks _______________________________________
@@ -39,7 +39,8 @@ void INIT_TASKS()
 void setup() {
   INIT_TERMINAL();
   INIT_LEDS();
-  INIT_EXTERNAL_PORTS();
+  //INIT_EXTERNAL_PORTS();
+  INIT_SCALE();
   INIT_WIFI();
   INIT_TASKS();
 }
