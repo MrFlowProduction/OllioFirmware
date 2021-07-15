@@ -5,6 +5,7 @@
 #include <radio.h>
 #include <leds.h>
 #include <terminal.h>
+#include <expander.h>
 
 Scheduler runner; // Task Scheduler (MAIN OBJECT)
 
@@ -38,10 +39,12 @@ void INIT_TASKS()
 void setup() {
   INIT_TERMINAL();
   INIT_LEDS();
+  INIT_EXTERNAL_PORTS();
 
   INIT_WIFI();
 
   INIT_TASKS();
+
 }
 
 void loop() {
