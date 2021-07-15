@@ -40,11 +40,8 @@ void setup() {
   INIT_TERMINAL();
   INIT_LEDS();
   INIT_EXTERNAL_PORTS();
-
   INIT_WIFI();
-
   INIT_TASKS();
-
 }
 
 void loop() {

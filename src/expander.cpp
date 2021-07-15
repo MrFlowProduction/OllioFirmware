@@ -1,9 +1,13 @@
 #include <expander.h>
 
+// MCP Library
 Adafruit_MCP23017 mcp;
 
+// MCP Connection state
 bool isMcpConnected;
 
+
+/* Init expander */
 void INIT_EXTERNAL_PORTS(){
     
     printinit("MCP23017 I/O Expander");
@@ -31,7 +35,59 @@ void INIT_EXTERNAL_PORTS(){
     mcp.pullUp(DOOR_SENSOR, HIGH);  
 
     mcp.digitalWrite(BUTTON_LED, HIGH);
+    mcp.setupInterruptPin(USER_BUTTON, FALLING);
+    mcp.setupInterruptPin(TANK_SENSOR, CHANGE);
+    mcp.setupInterruptPin(USER_BUTTON, CHANGE);
+
+    attachInterrupt(EXP_INTB, handlingExpInterrupt, FALLING);
 
     isMcpConnected = true;
+
+    InitExpanderStates();
+
+    printdone();
+}
+
+
+/* Init Default States */
+void InitExpanderStates(){
+    isTankFull = !mcp.digitalRead(TANK_SENSOR);
+    isDoorOpened = mcp.digitalRead(DOOR_SENSOR);
+}
+
+
+
+/* Handling Interrupts */
+void handlingExpInterrupt(){
+    
+    // Get more information from the MCP from the INT
+    uint8_t pin=mcp.getLastInterruptPin();
+    uint8_t val=mcp.getLastInterruptPinValue();
+
+    if (pin == USER_BUTTON){
+        isButtonPressed = true;
+    }
+}
+
+
+/* Set DC Motor driver pins */
+void setDcMotorPins(bool in1, bool in2, bool enable){
+
+    if(!isMcpConnected){ return; }
+
+    mcp.digitalWrite(DC_IN1, in1);
+    mcp.digitalWrite(DC_IN2, in1);
+    mcp.digitalWrite(DC_EN, enable);
+
+}
+
+
+/* Set User button backlight */
+void setButtonLight(bool state){
+
+    if(!isMcpConnected){ return; }
+
+    mcp.digitalWrite(BUTTON_LED, state);
+
 }
 

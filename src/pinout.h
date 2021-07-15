@@ -2,12 +2,13 @@
 #define PINOUT_H
 
 // ===============================================================================
-//      NAME                      PIN          DESCRIPTION
+//      NAME                    PIN            DESCRIPTION
 // ===============================================================================
-#define LED                       19        // Built-in LED
-#define HX711_SCK                 33        // Clock
-#define HX711_DAT                 25        // DATA
-#define NEO_PIXEL                 26        // NEO Pixel LED
+#define LED                     19          // Built-in LED
+#define HX711_SCK               33          // Clock
+#define HX711_DAT               25          // DATA
+#define NEO_PIXEL               26          // NEO Pixel LED
+#define EXP_INTB                5           // Expander Interrupt Pin
 // ===============================================================================
 
 // Expander Pinout

@@ -5,12 +5,15 @@
 
 // ____________________________________________ Globals ___________________________________________________
 // ========================================================================================================
-// TYPE             NAME                    DEF. VALUE         DESCRIPTION
+// TYPE                     NAME                    DEF. VALUE         DESCRIPTION
 // ========================================================================================================
-extern char                wifi_ssid[]; // Router SSID
-extern char                wifi_pass[];     // Router Password
-extern bool                terminal_enabled;
-extern bool                wifi_connected;
+extern char                 wifi_ssid[]; // Router SSID
+extern char                 wifi_pass[];     // Router Password
+extern bool                 terminal_enabled;
+extern bool                 wifi_connected;
+extern volatile bool        isButtonPressed;
+extern volatile bool        isTankFull;
+extern volatile bool        isDoorOpened;
 // ========================================================================================================
 
 #endif
