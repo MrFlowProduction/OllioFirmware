@@ -39,10 +39,13 @@ void INIT_EXTERNAL_PORTS(){
     mcp.setupInterruptPin(TANK_SENSOR, CHANGE);
     mcp.setupInterruptPin(USER_BUTTON, CHANGE);
 
+    // Set Native interrupt pin and callback
+    pinMode(EXP_INTB, INPUT);
     attachInterrupt(EXP_INTB, handlingExpInterrupt, FALLING);
 
     isMcpConnected = true;
 
+    // Init States
     InitExpanderStates();
 
     printdone();
