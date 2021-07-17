@@ -15,6 +15,7 @@ Scheduler runner; // Task Scheduler (MAIN OBJECT)
 // ===============================================================================
 Task tLedHandling(1000, TASK_FOREVER, &ledHandling, &runner);  // LED handling
 Task tTerminal(500, TASK_FOREVER, &terminal_handler, &runner); // Terminal handling
+Task tScale(500, TASK_FOREVER, &acquire_reading, &runner);
 // ===============================================================================
 
 /* Task init */
@@ -25,6 +26,9 @@ void INIT_TASKS()
   tLedHandling.enable();
 
   runner.addTask(tTerminal);
+
+  runner.addTask(tScale);
+  tScale.enable();
 
   if (terminal_enabled)
   {
@@ -39,9 +43,9 @@ void INIT_TASKS()
 void setup() {
   INIT_TERMINAL();
   INIT_LEDS();
-  //INIT_EXTERNAL_PORTS();
+  INIT_EXTERNAL_PORTS();
   INIT_SCALE();
-  INIT_WIFI();
+  //INIT_WIFI();
   INIT_TASKS();
 }
 

@@ -12,7 +12,9 @@ void INIT_EXTERNAL_PORTS(){
     
     printinit("MCP23017 I/O Expander");
 
-    if(i2c_address_check(0x20) > 0){
+    Wire.begin();
+
+    if(i2c_address_check(0x20) != 0){
         printreason(F("Not available"));
         return;
     }

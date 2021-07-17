@@ -15,6 +15,6 @@ extern HX711 scale;
 void INIT_SCALE();
 
 /* Acquire reading */
-void ACQUIRE_READING();
+void acquire_reading();
 
 #endif
