@@ -11,9 +11,15 @@ extern char                 wifi_ssid[]; // Router SSID
 extern char                 wifi_pass[];     // Router Password
 extern bool                 terminal_enabled;
 extern bool                 wifi_connected;
+extern bool                 isExpanderReady;
+extern bool                 isAdcReady;
+extern bool                 isScaleReady;
 extern volatile bool        isButtonPressed;
 extern volatile bool        isTankFull;
 extern volatile bool        isDoorOpened;
+extern byte                 tapState;
+extern byte                 statePoint;
+extern float                probe_votlage;
 // ========================================================================================================
 
 #endif
