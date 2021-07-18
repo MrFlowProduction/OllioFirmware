@@ -8,6 +8,7 @@
 #include <expander.h>
 #include <scale.h>
 #include <adc.h>
+
 Scheduler runner; // Task Scheduler (MAIN OBJECT)
 
 // _________________________________ Tasks _______________________________________
@@ -46,6 +47,18 @@ void INIT_TASKS()
 
 }
 
+/* Taskok engedélyezése és tiltása */
+void task_handling(){
+  if (terminal_enabled != tTerminal.isEnabled()) { tTerminal.enable(); }
+  else{ tTerminal.disable(); }
+
+  if (task_ads_isEnabled != tAds.isEnabled()) { tAds.enable(); }
+  else{ tAds.disable(); }
+
+  if (task_scale_isEnabled != tScale.isEnabled()) { tScale.enable(); }
+  else{ tScale.disable(); }
+}
+
 
 void setup() {
   INIT_TERMINAL();
@@ -58,5 +71,6 @@ void setup() {
 }
 
 void loop() {
+  task_handling();
   runner.execute();
 }

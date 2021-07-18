@@ -17,4 +17,8 @@ volatile bool       isDoorOpened =          false;          // Is top door opene
 byte                tapState;                               // Current tap state
 byte                statePoint;                             // Current machine State
 float               probe_votlage;                          // Current probe voltage
+float               progress;                               // Current progress state in percent
+
+bool                task_scale_isEnabled;                   // Scale task enabling
+bool                task_ads_isEnabled;                     // ASD task enabling
 // ========================================================================================================
