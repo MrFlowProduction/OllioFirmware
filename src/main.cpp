@@ -8,6 +8,7 @@
 #include <expander.h>
 #include <scale.h>
 #include <adc.h>
+#include <lcd.h>
 Scheduler runner; // Task Scheduler (MAIN OBJECT)
 
 // _________________________________ Tasks _______________________________________
@@ -17,7 +18,8 @@ Scheduler runner; // Task Scheduler (MAIN OBJECT)
 Task tLedHandling(1000, TASK_FOREVER, &ledHandling, &runner);  // LED handling
 Task tTerminal(500, TASK_FOREVER, &terminal_handler, &runner); // Terminal handling
 Task tScale(500, TASK_FOREVER, &acquire_reading, &runner);
-Task tAds(100, TASK_FOREVER, &adc_reading, &runner); 
+Task tAds(100, TASK_FOREVER, &adc_reading, &runner);
+Task tLcd(3000, TASK_FOREVER, &lcd_print, &runner);
 // ===============================================================================
 
 /* Task init */
@@ -33,6 +35,9 @@ void INIT_TASKS()
   // Scale
   runner.addTask(tScale);
   tScale.enable();
+
+  runner.addTask(tLcd);
+  tLcd.enable();
 
   // ADC
   runner.addTask(tAds);
@@ -51,6 +56,7 @@ void setup() {
   INIT_TERMINAL();
   INIT_LEDS();
   INIT_EXTERNAL_PORTS();
+  INIT_LCD();
   INIT_SCALE();
   INIT_ADC();
   //INIT_WIFI();
