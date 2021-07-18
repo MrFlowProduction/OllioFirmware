@@ -2,6 +2,12 @@
 #include <globals.h>
 #include <enum.h>
 
+#if defined(ARDUINO) && ARDUINO >= 100
+#define printByte(args)  write(args);
+#else
+#define printByte(args)  print(args,BYTE);
+#endif
+
 LiquidCrystal_I2C lcd(0x27,20,4);
 
 int prevMachineState = 1000;
@@ -75,6 +81,108 @@ void INIT_LCD() {
     lcd.createChar(5, rh);
 }
 
+// --------------------  Screen Animation Methods  -------------------- START
+
+void printRow(byte row, char ch, int interval = 5){
+
+  for(int c = 0; c < 20; c++){
+
+      lcd.setCursor(c, row);
+      lcd.print(ch);
+      delay(interval);
+  }
+  
+}
+
+void printByteRow(byte row, byte ch, int interval = 5){
+
+  for(int c = 0; c < 20; c++){
+
+      lcd.setCursor(c, row);
+      lcd.printByte(ch);
+      delay(interval);
+  }
+  
+}
+
+void printingAnimation(byte row){
+
+  printByteRow(row, 3, 5);
+
+  double percent = 0;
+
+  for(int i = 0; i < 21; i++){
+     lcd.setCursor(i, row);
+     
+     if(i < 20) { lcd.printByte(1); }
+     
+     if(i > 0){
+        lcd.setCursor(i - 1, row);
+        lcd.printByte(4);
+
+        percent += 2.5;
+        lcd.setCursor(7, row + 1);
+        lcd.print(percent, 1);
+        lcd.print("%");
+     }
+
+     
+     delay(150);
+  }
+
+  delay(50);
+
+  for(int i = 19; i >= -1; i--){
+     lcd.setCursor(i, row);
+     
+     if(i >= 0) { lcd.printByte(1); }
+     
+     if(i < 19){
+       lcd.setCursor(i + 1, row);
+        lcd.printByte(5);
+
+        percent += 2.5;
+        lcd.setCursor(7, row + 1);
+        lcd.print(percent, 1);
+        lcd.print("%");
+     }
+
+     delay(150);
+  }
+  
+}
+
+void slideUpEffect(){
+  
+  for(int c = 0; c < 20; c++){
+
+    for(byte r = 0; r < 4; r++){
+    
+      lcd.setCursor(c, r);
+      lcd.printByte(1);
+      delay(5);
+    }
+  }
+  
+}
+
+void slideDownEffect(){
+
+  for(int c = 0; c < 20; c++){
+
+    for(byte r = 0; r < 4; r++){
+    
+      lcd.setCursor(c, r);
+      lcd.print(" ");
+      delay(5);
+    }
+  }
+  
+}
+
+// --------------------  Screen Animation Methods  -------------------- END
+
+
 // --------------------  Set Screen Methods  -------------------- START
 
 void setNoneScreen() {
@@ -118,7 +226,69 @@ void setServiceScreen() {
 }
 
 void setDemoScreen() {
+  while (machineState == DEMO) {
+    slideUpEffect();
+    delay(100);
+    slideDownEffect();
+    
 
+    printRow(0, '/');
+
+    printRow(3, '/');
+
+    delay(200);
+    lcd.setCursor(3,1);
+    lcd.print("Ollio Automata");
+    delay(200);
+    lcd.setCursor(3,2);
+    lcd.print("Revolution 1."); 
+
+    delay(3000);
+
+    slideDownEffect();
+
+    lcd.setCursor(2,0);
+    lcd.print("Clean");
+    delay(1000);
+    lcd.setCursor(4,1);
+    lcd.print("Reliable");
+    delay(1000);
+    lcd.setCursor(6,2);
+    lcd.print("Powerful");
+    delay(1000);
+    lcd.setCursor(8,3);
+    lcd.print("Easy to use");
+
+    delay(2000);
+
+    slideDownEffect();
+
+    printRow(0, '/');
+    printRow(3, '/');
+
+    lcd.setCursor(5,1);
+    lcd.print("Filling...");
+
+    
+
+    for(double i = 0; i < 11; i = i + 0.1){
+      lcd.setCursor(5,2);
+      lcd.print(i, 1);
+      lcd.print("L");
+      delay(50);
+    }
+
+    lcd.print(" DONE");
+
+    delay(2000);
+
+    lcd.setCursor(5,1);
+    lcd.print("Printing...");
+    
+    printingAnimation(2);
+
+    delay(2000);
+  }
 }
 
 void setFaultScreen() {
