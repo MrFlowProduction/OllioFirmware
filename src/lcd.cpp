@@ -1,6 +1,10 @@
 #include <lcd.h>
+#include <globals.h>
+#include <enum.h>
 
 LiquidCrystal_I2C lcd(0x27,20,4);
+
+int prevMachineState = 1000;
 
 uint8_t bell[8]  = {0x4,0xe,0xe,0xe,0x1f,0x0,0x4};
 uint8_t full[8] = {
@@ -71,12 +75,103 @@ void INIT_LCD() {
     lcd.createChar(5, rh);
 }
 
+// --------------------  Set Screen Methods  -------------------- START
+
+void setNoneScreen() {
+  lcd.setCursor(3,1);
+  lcd.print("OllioFirmware");
+  delay(200);
+  lcd.setCursor(7,2);
+  lcd.print("v0.1");
+}
+
+void setStartScreen() {
+  lcd.setCursor(3,1);
+  lcd.print("OllioFirmware");
+  delay(200);
+  lcd.setCursor(7,2);
+  lcd.print("v0.1");
+}
+
+void setShortingScreen() {
+
+}
+
+void setSeparateScreen() {
+
+}
+
+void setMeasureScreen() {
+
+}
+
+void setPrintingScreen() {
+
+}
+
+void setClosingScreen() {
+
+}
+
+void setServiceScreen() {
+
+}
+
+void setDemoScreen() {
+
+}
+
+void setFaultScreen() {
+  lcd.setCursor(1,1);
+  lcd.print("OllioFirmware v0.1");
+  delay(200);
+  lcd.setCursor(5,2);
+  lcd.print("Error: 32");
+}
+
+// --------------------  Set Screen Methods  -------------------- END
+
 void lcd_print() {
+  if (machineState != prevMachineState) {
+
+    prevMachineState = machineState;
+
     lcd.clear();
-    delay(500);
-    lcd.setCursor(3,1);
-    lcd.print("Ollio Automata");
-    delay(200);
-    lcd.setCursor(3,2);
-    lcd.print("Revolution 1."); 
+
+    switch (machineState)
+    {
+      case NONE: setNoneScreen();
+        break;
+      
+      //case START: setStartScreen();
+      //  break;
+
+      //case SHORTING: setShortingScreen();
+      //  break;
+
+      //case SEPARATE: setSeparateScreen();
+      //  break;
+
+      case MEASURE: setMeasureScreen();
+        break;
+
+      case PRINTING: setPrintingScreen();
+        break;
+
+      case CLOSING: setClosingScreen();
+        break;
+
+      //case SERVICE: setServiceScreen();
+      //  break;
+
+      case DEMO: setDemoScreen();
+        break;
+
+      case FAULT: setFaultScreen();
+        break;
+
+      default: setNoneScreen();
+        break;
+    }
+  }
 }

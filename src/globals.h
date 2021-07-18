@@ -20,6 +20,7 @@ extern volatile bool        isDoorOpened;
 extern byte                 tapState;
 extern byte                 statePoint;
 extern float                probe_votlage;
+extern int                  machineState;
 // ========================================================================================================
 
 #endif

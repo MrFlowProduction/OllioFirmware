@@ -16,27 +16,27 @@ const long LOADCELL_DIVIDER = 0.45359237;
 
 void INIT_SCALE(){
     scale.begin(LOADCELL_DOUT_PIN, LOADCELL_SCK_PIN);
-    //scale.set_scale(LOADCELL_DIVIDER);
-    //scale.set_offset(LOADCELL_OFFSET);
     scale.set_scale();
     scale.tare();
-
+    Serial.println(scale.get_units(10)/71);
     ZERO_FACTOR = scale.read_average(); //Get a baseline reading
     Serial.print("Zero factor: "); //This can be used to remove the need to tare the scale. Useful in permanent scale projects.
     Serial.println(ZERO_FACTOR);
 }
 
 void  acquire_reading(){
-    scale.set_scale(LOADCELL_OFFSET);
-    scale.set_offset(ZERO_FACTOR);
-    //scale.set_scale(15542);
-    Serial.print("Weight: ");
+    //scale.set_scale(LOADCELL_OFFSET);
+    //scale.set_offset(ZERO_FACTOR);
+    
+    //Serial.print("Weight: ");
     
     //scale.tare();
-    Serial.print(scale.get_units(), 1);
+    //Serial.print(scale.get_units(), 1);
 
-    Serial.println(" kg");
+    //Serial.println(" kg");
 
+    //-----------------------------
+    
     /*Serial.print(" calibration_factor: ");
     Serial.print(LOADCELL_OFFSET);
     Serial.println();
@@ -50,11 +50,13 @@ void  acquire_reading(){
         else if(temp == '-' || temp == 'z')
         LOADCELL_OFFSET -= 10;
     }*/
-    /*if (scale.wait_ready_timeout(1000)) {
-        long reading = scale.get_units(10);
+
+    //----------------------------------
+    if (scale.wait_ready_timeout(1000)) {
+        long reading = scale.get_units(10)/71;
         Serial.print("Weight: ");
         Serial.println(reading, 2);
     } else {
         Serial.println("HX711 not found.");
-    }*/
+    }
 }

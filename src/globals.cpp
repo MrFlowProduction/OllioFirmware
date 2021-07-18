@@ -1,5 +1,5 @@
 #include <globals.h>
-
+#include <enum.h>
 // ____________________________________________ Globals ___________________________________________________
 // ========================================================================================================
 // TYPE             NAME                    DEF. VALUE         DESCRIPTION
@@ -17,4 +17,5 @@ volatile bool       isDoorOpened =          false;          // Is top door opene
 byte                tapState;                               // Current tap state
 byte                statePoint;                             // Current machine State
 float               probe_votlage;                          // Current probe voltage
+int                 machineState =          FAULT;
 // ========================================================================================================

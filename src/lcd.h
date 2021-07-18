@@ -7,9 +7,42 @@
 
 extern LiquidCrystal_I2C lcd;
 
-/* Init scale */
+extern int prevMachineState;
+
+/* Init LCD screen */
 void INIT_LCD();
 
+/* Display device name and software version */
+void setNoneScreen();
+
+/* Display init screen */
+void setStartScreen();
+ 
+/* Display analog measurements and its process feedback */
+void setShortingScreen();
+
+/* Display if it is necessary to transfer the loaded unfavorable oil to the separation tank */
+void setSeparateScreen();
+
+/* Display pouring and weighing good quality oil into barrels and calculated weight */
+void setMeasureScreen();
+
+/* Display printing a block certifying the accounted quantity */
+void setPrintingScreen();
+
+/* Display process termination and reset */
+void setClosingScreen();
+
+/* Display service mode */
+void setServiceScreen();
+
+/* Display demo mode */
+void setDemoScreen();
+
+/* Display error screen */
+void setFaultScreen();
+
+/* Checking current display state and displaying the correct screen */
 void lcd_print();
 
 #endif
