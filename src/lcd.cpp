@@ -83,7 +83,7 @@ void INIT_LCD() {
 
 // --------------------  Screen Animation Methods  -------------------- START
 
-void printRow(byte row, char ch, int interval = 5){
+void printRow(byte row, char ch, int interval = 5) {
 
   for(int c = 0; c < 20; c++){
 
@@ -94,7 +94,7 @@ void printRow(byte row, char ch, int interval = 5){
   
 }
 
-void printByteRow(byte row, byte ch, int interval = 5){
+void printByteRow(byte row, byte ch, int interval = 5) {
 
   for(int c = 0; c < 20; c++){
 
@@ -105,7 +105,7 @@ void printByteRow(byte row, byte ch, int interval = 5){
   
 }
 
-void printingAnimation(byte row){
+void printingAnimation(byte row) {
 
   printByteRow(row, 3, 5);
 
@@ -152,7 +152,7 @@ void printingAnimation(byte row){
   
 }
 
-void slideUpEffect(){
+void slideUpEffect() {
   
   for(int c = 0; c < 20; c++){
 
@@ -166,7 +166,7 @@ void slideUpEffect(){
   
 }
 
-void slideDownEffect(){
+void slideDownEffect() {
 
   for(int c = 0; c < 20; c++){
 

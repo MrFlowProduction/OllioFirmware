@@ -12,6 +12,21 @@ extern int prevMachineState;
 /* Init LCD screen */
 void INIT_LCD();
 
+/*  */
+void printRow(byte, char, int);
+
+/*  */
+void printByteRow(byte, byte, int);
+
+/* Printing animation */
+void printingAnimation(byte);
+
+/* Slide up animation */
+void slideUpEffect();
+
+/* Slide down animation */
+void slideDownEffect();
+
 /* Display device name and software version */
 void setNoneScreen();
 
