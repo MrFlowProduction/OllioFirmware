@@ -1,5 +1,5 @@
 #include <globals.h>
-
+#include <enum.h>
 // ____________________________________________ Globals ___________________________________________________
 // ========================================================================================================
 // TYPE             NAME                    DEF. VALUE         DESCRIPTION
@@ -21,4 +21,5 @@ float               progress;                               // Current progress 
 
 bool                task_scale_isEnabled;                   // Scale task enabling
 bool                task_ads_isEnabled;                     // ASD task enabling
+int                 machineState =          FAULT;
 // ========================================================================================================
