@@ -310,37 +310,48 @@ void lcd_print() {
 
     switch (machineState)
     {
-      case NONE: setNoneScreen();
+      case NONE:
+        setNoneScreen();
         break;
       
-      //case START: setStartScreen();
+      //case START:
+      //    setStartScreen();
       //  break;
 
-      //case SHORTING: setShortingScreen();
+      //case SHORTING:
+      //  setShortingScreen();
       //  break;
 
-      //case SEPARATE: setSeparateScreen();
+      //case SEPARATE:
+      //  setSeparateScreen();
       //  break;
 
-      case MEASURE: setMeasureScreen();
+      case MEASURE: 
+        setMeasureScreen();
         break;
 
-      case PRINTING: setPrintingScreen();
+      case PRINTING:
+        setPrintingScreen();
         break;
 
-      case CLOSING: setClosingScreen();
+      case CLOSING:
+        setClosingScreen();
         break;
 
-      //case SERVICE: setServiceScreen();
+      //case SERVICE:
+      //  setServiceScreen();
       //  break;
 
-      case DEMO: setDemoScreen();
+      case DEMO:
+        setDemoScreen();
         break;
 
-      case FAULT: setFaultScreen();
+      case FAULT:
+        setFaultScreen();
         break;
 
-      default: setNoneScreen();
+      default:
+        setNoneScreen();
         break;
     }
   }
