@@ -17,10 +17,12 @@
 
 // Machnie States
 #define NONE        0
+#define START       252
+#define SERVICE     253
 #define DEMO        254
 #define FAULT       255
-#define MEASURE     1
+#define SHORTING    1  
 #define SEPARETE    2
-#define FILLING     3
+#define MEASURE     3
 #define PRINTING    4
 #define CLOSING     5
