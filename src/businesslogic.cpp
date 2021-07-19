@@ -19,7 +19,7 @@ void stateMachine(){
             ShortingState();
             break;
 
-        case SEPARETE:
+        case SEPARATE:
             
             break;
 

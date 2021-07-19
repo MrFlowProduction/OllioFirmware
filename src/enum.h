@@ -22,7 +22,7 @@
 #define DEMO        254
 #define FAULT       255
 #define SHORTING    1  
-#define SEPARETE    2
+#define SEPARATE    2
 #define MEASURE     3
 #define PRINTING    4
 #define CLOSING     5

@@ -18,6 +18,9 @@ void printRow(byte, char, int);
 /*  */
 void printByteRow(byte, byte, int);
 
+/* Percentage animation */
+void percentAnimation(byte);
+
 /* Printing animation */
 void printingAnimation(byte);
 

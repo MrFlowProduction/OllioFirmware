@@ -21,5 +21,5 @@ float               progress;                               // Current progress 
 
 bool                task_scale_isEnabled;                   // Scale task enabling
 bool                task_ads_isEnabled;                     // ASD task enabling
-int                 machineState =          DEMO;
+int                 machineState =          SEPARATE;
 // ========================================================================================================

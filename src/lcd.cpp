@@ -105,6 +105,47 @@ void printByteRow(byte row, byte ch, int interval = 5) {
   
 }
 
+void percentAnimation(byte row) {
+
+  double percent = 0;
+
+  for(int i = 0; i < 21; i++){
+    //lcd.setCursor(i, row);
+     
+    //if(i < 20) { lcd.printByte(1); }
+     
+    if(i > 0){
+      percent += 2.5;
+      lcd.setCursor(7, row);
+      lcd.print(percent, 1);
+      lcd.print("%");
+    }
+
+    delay(150);
+  }
+
+  delay(50);
+
+  for(int i = 19; i >= -1; i--){
+    lcd.setCursor(i, row);
+     
+    if(i >= 0) { lcd.printByte(1); }
+     
+    if(i < 19){
+      //lcd.setCursor(i + 1, row);
+      //lcd.printByte(5);
+
+      percent += 2.5;
+      lcd.setCursor(7, row);
+      lcd.print(percent, 1);
+      lcd.print("%");
+    }
+
+     delay(150);
+  }
+  
+}
+
 void printingAnimation(byte row) {
 
   printByteRow(row, 3, 5);
@@ -188,7 +229,9 @@ void slideDownEffect() {
 void setNoneScreen() {
   lcd.setCursor(3,1);
   lcd.print("OllioFirmware");
+
   delay(200);
+
   lcd.setCursor(7,2);
   lcd.print("v0.1");
 }
@@ -196,7 +239,9 @@ void setNoneScreen() {
 void setStartScreen() {
   lcd.setCursor(3,1);
   lcd.print("OllioFirmware");
+
   delay(200);
+
   lcd.setCursor(7,2);
   lcd.print("v0.1");
 }
@@ -206,19 +251,41 @@ void setShortingScreen() {
 }
 
 void setSeparateScreen() {
+  lcd.setCursor(3,1);
+  lcd.print("Transfering to");
 
+  delay(200);
+
+  lcd.setCursor(3,2);
+  lcd.print("separator tank");
+
+  delay(200);
+
+  percentAnimation(3);
 }
 
 void setMeasureScreen() {
+  lcd.setCursor(1,1);
+  lcd.print("Masuring quality oil");
 
+  delay(200);
+
+  lcd.setCursor(7,2);
+  lcd.print("");
 }
 
 void setPrintingScreen() {
-
+  lcd.setCursor(2,1);
+  lcd.print("Printing receipt");
+    
+  printingAnimation(2);
 }
 
 void setClosingScreen() {
-
+  lcd.setCursor(4,1);
+  lcd.print("Finishing up");
+    
+  printingAnimation(2);
 }
 
 void setServiceScreen() {
@@ -294,7 +361,9 @@ void setDemoScreen() {
 void setFaultScreen() {
   lcd.setCursor(1,1);
   lcd.print("OllioFirmware v0.1");
+
   delay(200);
+
   lcd.setCursor(5,2);
   lcd.print("Error: 32");
 }
@@ -314,17 +383,17 @@ void lcd_print() {
         setNoneScreen();
         break;
       
-      //case START:
-      //    setStartScreen();
-      //  break;
+      case START:
+          setStartScreen();
+        break;
 
-      //case SHORTING:
-      //  setShortingScreen();
-      //  break;
+      case SHORTING:
+        setShortingScreen();
+        break;
 
-      //case SEPARATE:
-      //  setSeparateScreen();
-      //  break;
+      case SEPARATE:
+        setSeparateScreen();
+        break;
 
       case MEASURE: 
         setMeasureScreen();
@@ -338,9 +407,9 @@ void lcd_print() {
         setClosingScreen();
         break;
 
-      //case SERVICE:
-      //  setServiceScreen();
-      //  break;
+      case SERVICE:
+        setServiceScreen();
+        break;
 
       case DEMO:
         setDemoScreen();
