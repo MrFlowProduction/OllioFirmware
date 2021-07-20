@@ -4,6 +4,8 @@
 
 void stateMachine(){
 
+    return;
+
     switch (statePoint)
     {
 

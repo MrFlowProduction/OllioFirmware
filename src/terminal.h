@@ -4,6 +4,8 @@
 #include <Arduino.h>            // Base Arduino library
 #include <settings.h>           // Settings
 #include <diagnostic.h>
+#include <enum.h>
+#include <globals.h>
 
 void INIT_TERMINAL();
 

@@ -102,12 +102,40 @@ void terminal_handler() {
     if (temp == "setup system") {
     }
 
-    else if (temp == "usbmode"){
-      printdone();
+    else if (temp == "mode none"){
+      statePoint = NONE;
     }
 
-    else if (temp == "scan bus"){
-      i2c_scanner();
+    else if (temp == "mode shorting"){
+      statePoint = SHORTING;
+    }
+
+    else if (temp == "mode separete"){
+      statePoint = SEPARATE;
+    }
+
+    else if (temp == "mode measure"){
+      statePoint = MEASURE;
+    }
+
+    else if (temp == "mode printing"){
+      statePoint = PRINTING;
+    }
+
+    else if (temp == "mode closing"){
+      statePoint = CLOSING;
+    }
+
+    else if (temp == "mode service"){
+      statePoint = SERVICE;
+    }
+
+    else if (temp == "mode demo"){
+      statePoint = DEMO;
+    }
+
+    else if (temp == "mode fault"){
+      statePoint = FAULT;
     }
 
     else {
