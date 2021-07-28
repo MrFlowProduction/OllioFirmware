@@ -1,6 +1,7 @@
 #include <lcd.h>
 #include <globals.h>
 #include <enum.h>
+#include <stdlib.h>
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #define printByte(args)  write(args);
@@ -10,7 +11,7 @@
 
 LiquidCrystal_I2C lcd(0x27,20,4);
 
-int prevMachineState = 1000;
+int prevStatePoint = 1000;
 
 uint8_t bell[8]  = {0x4,0xe,0xe,0xe,0x1f,0x0,0x4};
 uint8_t full[8] = {
@@ -105,7 +106,7 @@ void printByteRow(byte row, byte ch, int interval = 5) {
   
 }
 
-void percentAnimation(byte row) {
+/*void percentAnimation(byte row) {
 
   double percent = 0;
 
@@ -144,6 +145,24 @@ void percentAnimation(byte row) {
      delay(150);
   }
   
+}*/
+
+void percentAnimation(byte row) {
+
+  while (progress < 100) {
+    lcd.setCursor(7, row);
+    lcd.print(progress, 1);
+    lcd.print("%");
+
+    for (int i = 0; i < abs(progress/10); i++) {
+      if ((i < 7 || i > 13) && i >= 0) {
+        lcd.setCursor(i, row);
+        lcd.printByte(1);
+      }
+    }
+
+    delay(300);
+  }
 }
 
 void printingAnimation(byte row) {
@@ -247,7 +266,10 @@ void setStartScreen() {
 }
 
 void setShortingScreen() {
+  lcd.setCursor(5,1);
+  lcd.print("Filling...");
 
+  percentAnimation(3);
 }
 
 void setSeparateScreen() {
@@ -261,7 +283,7 @@ void setSeparateScreen() {
 
   delay(200);
 
-  percentAnimation(3);
+  //percentAnimation(3);
 }
 
 void setMeasureScreen() {
@@ -270,8 +292,7 @@ void setMeasureScreen() {
 
   delay(200);
 
-  lcd.setCursor(7,2);
-  lcd.print("");
+  percentAnimation(3);
 }
 
 void setPrintingScreen() {
@@ -289,11 +310,21 @@ void setClosingScreen() {
 }
 
 void setServiceScreen() {
+  printRow(0, '/');
 
+  printRow(3, '/');
+
+  lcd.setCursor(3,1);
+  lcd.print("Service mode");
+
+  delay(200);
+
+  lcd.setCursor(5,2);
+  lcd.print("enabled");
 }
 
 void setDemoScreen() {
-  while (machineState == DEMO) {
+  while (statePoint == DEMO) {
     slideUpEffect();
     delay(100);
     slideDownEffect();
@@ -371,13 +402,13 @@ void setFaultScreen() {
 // --------------------  Set Screen Methods  -------------------- END
 
 void lcd_print() {
-  if (machineState != prevMachineState) {
+  if (statePoint != prevStatePoint) {
 
-    prevMachineState = machineState;
+    prevStatePoint = statePoint;
 
     lcd.clear();
 
-    switch (machineState)
+    switch (statePoint)
     {
       case NONE:
         setNoneScreen();

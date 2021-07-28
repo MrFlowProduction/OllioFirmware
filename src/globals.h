@@ -25,7 +25,7 @@ extern float                progress;
 extern bool                 task_scale_isEnabled;
 extern bool                 task_ads_isEnabled;
 
-extern int                  machineState;
+//extern int                  machineState;
 // ========================================================================================================
 
 #endif

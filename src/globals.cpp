@@ -15,11 +15,11 @@ volatile bool       isButtonPressed =       false;          // User button press
 volatile bool       isTankFull =            false;          // Tank is fullfilled
 volatile bool       isDoorOpened =          false;          // Is top door opened
 byte                tapState;                               // Current tap state
-byte                statePoint;                             // Current machine State
+byte                statePoint =            NONE;           // Current machine State
 float               probe_votlage;                          // Current probe voltage
 float               progress;                               // Current progress state in percent
 
 bool                task_scale_isEnabled;                   // Scale task enabling
 bool                task_ads_isEnabled;                     // ASD task enabling
-int                 machineState =          SEPARATE;
+//int                 machineState =          SEPARATE;
 // ========================================================================================================

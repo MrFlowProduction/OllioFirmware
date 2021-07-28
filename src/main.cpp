@@ -60,7 +60,7 @@ void task_handling(){
   if (task_ads_isEnabled != tAds.isEnabled()) { tAds.enable(); }
   else{ tAds.disable(); }
 
-  if (task_scale_isEnabled != tScale.isEnabled()) { tScale.enable(); }
+  if (task_scale_isEnabled != tScale.isEnabled()) { tScale.disable(); }
   else{ tScale.disable(); }
 }
 
@@ -70,7 +70,7 @@ void setup() {
   INIT_LEDS();
   INIT_EXTERNAL_PORTS();
   INIT_LCD();
-  INIT_SCALE();
+  //INIT_SCALE();
   INIT_ADC();
   //INIT_WIFI();
   INIT_TASKS();

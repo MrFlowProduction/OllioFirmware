@@ -1,5 +1,5 @@
 #include <terminal.h>
-
+#include <string.h>
 
 
 void INIT_TERMINAL(){
@@ -78,21 +78,12 @@ void terminal_handler() {
   if (Serial.available() > 0) {
 
     String temp = "";
-    char c;
 
     while (Serial.available() > 0) {
-      c = (char)Serial.read();
 
-      if (c == '@') {
-        Serial.flush();
-        return;
-      }
+      temp = Serial.readStringUntil('\n');
+      temp.trim();
 
-      if (c == '\n' || c == '\r') {
-        continue;
-      }
-
-      temp += c;
       delay(1);
     }
 
@@ -104,42 +95,74 @@ void terminal_handler() {
 
     else if (temp == "mode none"){
       statePoint = NONE;
+      Serial.println("LCD mode set to NONE");
     }
 
     else if (temp == "mode shorting"){
       statePoint = SHORTING;
+      Serial.println("LCD mode set to SHORTING");
     }
 
     else if (temp == "mode separete"){
       statePoint = SEPARATE;
+      Serial.println("LCD mode set to SEPARATE");
     }
 
     else if (temp == "mode measure"){
       statePoint = MEASURE;
+      Serial.println("LCD mode set to MEASURE");
     }
 
     else if (temp == "mode printing"){
       statePoint = PRINTING;
+      Serial.println("LCD mode set to PRINTING");
     }
 
     else if (temp == "mode closing"){
       statePoint = CLOSING;
+      Serial.println("LCD mode set to CLOSING");
     }
 
     else if (temp == "mode service"){
       statePoint = SERVICE;
+      Serial.println("LCD mode set to SERVICE");
     }
 
     else if (temp == "mode demo"){
       statePoint = DEMO;
+      Serial.println("LCD mode set to DEMO");
     }
 
     else if (temp == "mode fault"){
       statePoint = FAULT;
+      Serial.println("LCD mode set to FAULT");
+    }
+
+    else if (temp == "progress") {
+      Serial.println("Give me a percentage value from 1 to 100:");
+
+      boolean waitForNum = true;
+      //char array[4];
+      while (waitForNum) {
+
+        temp = Serial.readStringUntil('\n');
+        temp.trim();
+        //unsigned int n = temp.length();
+        //Serial.println(n);
+        //temp.toFloat();
+        //temp.toCharArray(array, n);
+        if (temp != NULL) {
+          waitForNum = false;
+        }
+        Serial.println(temp);
+        delay(1);
+      }
+      progress = temp.toFloat();
+      Serial.printf("progress set to %.1f%%\n", progress);
     }
 
     else {
-      Serial.println(F("Unknown command"));
+      Serial.printf("Unknown command: %s\n", temp);
     }
 
   }
