@@ -39,7 +39,7 @@ void INIT_EXTERNAL_PORTS(){
     mcp.digitalWrite(BUTTON_LED, HIGH);
     mcp.setupInterruptPin(USER_BUTTON, FALLING);
     mcp.setupInterruptPin(TANK_SENSOR, CHANGE);
-    mcp.setupInterruptPin(USER_BUTTON, CHANGE);
+    mcp.setupInterruptPin(DOOR_SENSOR, CHANGE);
 
     // Set Native interrupt pin and callback
     pinMode(EXP_INTB, INPUT);

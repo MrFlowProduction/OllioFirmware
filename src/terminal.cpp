@@ -138,6 +138,7 @@ void terminal_handler() {
       Serial.println("LCD mode set to FAULT");
     }
 
+
     else if (temp == "progress") {
       Serial.println("Give me a percentage value from 1 to 100:");
 
