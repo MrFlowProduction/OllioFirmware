@@ -1,6 +1,7 @@
 #include <terminal.h>
 #include <expander.h>
 #include <string.h>
+#include <lcd.h>
 
 
 void INIT_TERMINAL(){
@@ -153,10 +154,28 @@ void terminal_handler() {
     }
 
     else if (temp == "readsens"){
+      lcd.clear();
+      lcd.setCursor(0,0);
+      lcd.print("Sensor table");
+      
       
       Serial.println("Reading sensors:");
+      
+      lcd.setCursor(0,1);
       int val = getSensValue(DOOR_SENSOR);
+      lcd.print("Door Sensor: "+String(val));
       Serial.println("DOOR sensor:"+String(val));
+      
+      lcd.setCursor(0,2);
+      val = getSensValue(TANK_SENSOR);
+      lcd.print("TANK Sensor: "+String(val));
+      Serial.println("TANK sensor:"+String(val));
+      
+      lcd.setCursor(0,3);
+      val = getSensValue(USER_BUTTON);
+      lcd.print("USER Button: "+String(val));
+      Serial.println("USER_BUTTON:"+String(val));
+      
     }
 
     else if (temp == "progress") {
