@@ -39,10 +39,10 @@ void INIT_EXTERNAL_PORTS(){
     mcp.digitalWrite(BUTTON_LED, HIGH);
     mcp.setupInterruptPin(USER_BUTTON, FALLING);
     mcp.setupInterruptPin(TANK_SENSOR, CHANGE);
-    mcp.setupInterruptPin(USER_BUTTON, CHANGE);
+    mcp.setupInterruptPin(DOOR_SENSOR, CHANGE);
 
     // Set Native interrupt pin and callback
-    pinMode(EXP_INTB, INPUT);
+    pinMode(EXP_INTB, INPUT_PULLUP);
     attachInterrupt(EXP_INTB, handlingExpInterrupt, FALLING);
 
     isMcpConnected = true;
@@ -59,7 +59,6 @@ void InitExpanderStates(){
     isTankFull = !mcp.digitalRead(TANK_SENSOR);
     isDoorOpened = mcp.digitalRead(DOOR_SENSOR);
 }
-
 
 
 /* Handling Interrupts */
@@ -82,8 +81,10 @@ void handlingExpInterrupt(){
 
     // Handling Door sensor
     if(pin == DOOR_SENSOR){
-        if(val == 0) {isDoorOpened = false; }
-        else{ isTankFull = true; }
+        if(val == 0) { 
+            isDoorOpened = false; }
+        else{ isDoorOpened = true; }
+         Serial.println("Door state: "+String(val));
     }
 }
 
@@ -107,5 +108,11 @@ void setButtonLight(bool state){
 
     mcp.digitalWrite(BUTTON_LED, state);
 
+}
+
+/* Reads a digital input */
+int getSensValue(int pin)
+{
+    return mcp.digitalRead(pin);
 }
 

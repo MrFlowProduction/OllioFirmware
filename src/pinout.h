@@ -18,7 +18,7 @@
 #define BUTTON_LED              4         // Button backlight
 #define TANK_SENSOR             0         // Tank full sensor
 #define USER_BUTTON             1         // User control button
-#define DOOR_SENSOR             2         // User control button
+#define DOOR_SENSOR             2         // Door sensor input
 #define DC_EN                   8         // Tank full sensor
 #define DC_IN1                  10        // User control button
 #define DC_IN2                  9         // User control button

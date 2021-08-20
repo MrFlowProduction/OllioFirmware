@@ -29,4 +29,7 @@ void setDcMotorPins(bool, bool, bool);
 /* Set User button backlight */
 void setButtonLight(bool);
 
+/* Reads a digital input */
+int getSensValue(int pin);
+
 #endif

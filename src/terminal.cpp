@@ -1,4 +1,5 @@
 #include <terminal.h>
+#include <expander.h>
 #include <string.h>
 
 
@@ -136,6 +137,26 @@ void terminal_handler() {
     else if (temp == "mode fault"){
       statePoint = FAULT;
       Serial.println("LCD mode set to FAULT");
+    }
+
+    else if (temp == "buttonled on"){
+      
+      Serial.println("Button Led On");
+      setButtonLight(true);
+      
+    }
+
+    else if (temp == "buttonled off"){
+      
+      Serial.println("Button Led Off");
+      setButtonLight(false);
+    }
+
+    else if (temp == "readsens"){
+      
+      Serial.println("Reading sensors:");
+      int val = getSensValue(DOOR_SENSOR);
+      Serial.println("DOOR sensor:"+String(val));
     }
 
     else if (temp == "progress") {
