@@ -2,6 +2,7 @@
 #include <expander.h>
 #include <string.h>
 #include <lcd.h>
+#include <scale.h>
 
 
 void INIT_TERMINAL(){
@@ -158,7 +159,6 @@ void terminal_handler() {
       lcd.setCursor(0,0);
       lcd.print("Sensor table");
       
-      
       Serial.println("Reading sensors:");
       
       lcd.setCursor(0,1);
@@ -175,6 +175,9 @@ void terminal_handler() {
       val = getSensValue(USER_BUTTON);
       lcd.print("USER Button: "+String(val));
       Serial.println("USER_BUTTON:"+String(val));
+
+      INIT_SCALE();
+      acquire_reading();
       
     }
 
@@ -202,7 +205,10 @@ void terminal_handler() {
     }
 
     else {
-      Serial.printf("Unknown command: %s\n", temp);
+      
+      char buf[temp.length()+1];
+      temp.toCharArray(buf,0,temp.length()+1);
+      Serial.printf("Unknown command: %s\n",buf);
     }
 
   }

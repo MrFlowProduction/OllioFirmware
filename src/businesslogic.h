@@ -23,4 +23,12 @@ void PrintingState();
 
 void FaultState();
 
+void SystemCheck();
+
+void Reset();
+
+void ErrorState();
+
+void WaitForButton();
+
 #endif

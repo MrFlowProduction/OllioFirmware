@@ -26,3 +26,15 @@
 #define MEASURE     3
 #define PRINTING    4
 #define CLOSING     5
+
+// Error codes
+#define ERROR_NONE 0
+#define ERROR_DOOR_SENSOR_OPEN 1
+#define ERROR_LCD 2
+#define ERROR_PRINTER_INIT 3
+#define ERROR_PRINTER_PAPER 31
+#define ERROR_PRINTER_INK 32
+#define ERROR_ADC 4
+#define ERROR_SCALE 5
+#define ERROR_TANK_SENSOR 6
+#define ERROR_MOTOR 7

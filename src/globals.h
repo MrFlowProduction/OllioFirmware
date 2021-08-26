@@ -21,10 +21,11 @@ extern byte                 tapState;
 extern byte                 statePoint;
 extern float                probe_votlage;
 extern float                progress;
-
+extern float                oilquality_max;
+extern float                oilquality_min;
 extern bool                 task_scale_isEnabled;
 extern bool                 task_ads_isEnabled;
-
+extern volatile byte        error_code;
 //extern int                  machineState;
 // ========================================================================================================
 

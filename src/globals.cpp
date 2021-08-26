@@ -18,8 +18,15 @@ byte                tapState;                               // Current tap state
 byte                statePoint =            NONE;           // Current machine State
 float               probe_votlage;                          // Current probe voltage
 float               progress;                               // Current progress state in percent
-
+// Oil values
+// ========================================================================================================
+float               oilquality_max =        10;             // Oil quality max value
+float               oilquality_min =        5;              // Oil quality max value
+// Scale values
+// ========================================================================================================
+float               scale_value;                            // Scale measured value
 bool                task_scale_isEnabled;                   // Scale task enabling
 bool                task_ads_isEnabled;                     // ASD task enabling
+volatile byte       error_code =            0;              // Hibakód
 //int                 machineState =          SEPARATE;
 // ========================================================================================================

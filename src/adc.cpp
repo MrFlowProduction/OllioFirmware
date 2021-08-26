@@ -10,6 +10,7 @@ void INIT_ADC(){
     Serial.println(ADS1X15_LIB_VERSION);
 
     ads.begin();
+    
 
     if(!ads.isConnected()){
         printreason("Not available!");
